@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Input from "./Input";
 import Select from "./Select";
-import Joi from "joi";
 
 export default class Form extends Component {
   state = {
@@ -21,11 +20,8 @@ export default class Form extends Component {
   };
 
   validateProperty = ({ name, value }) => {
-    return null;
     const obj = { [name]: value };
-    const schema = Joi.object({ [name]: this.schema[name] });
-    console.log(schema);
-    const { error } = schema.validate(obj);
+    const { error } = this.schema.validate(obj);
 
     return error ? error.details[0].message : null;
   };

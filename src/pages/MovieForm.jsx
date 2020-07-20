@@ -9,8 +9,8 @@ export default class LoginForm extends Form {
     data: {
       title: "",
       genreId: "",
-      numberInStock: 0,
-      dailyRentalRate: 0,
+      numberInStock: "",
+      dailyRentalRate: "",
     },
     genres: [],
     errors: {},
@@ -67,7 +67,7 @@ export default class LoginForm extends Form {
           {this.renderInput("title", "Title", { autoFocus: true })}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
           {this.renderInput("numberInStock", "Number In Stock")}
-          {this.renderInput("rate", "Rate")}
+          {this.renderInput("dailyRentalRate", "Daily Rental Rate")}
           {this.renderButton("Save")}
         </form>
       </div>
