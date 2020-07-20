@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-//import Movies from "../components/Movies";
 import Counters from "../components/Counters";
 import NavBar from "../components/NavBar";
 
@@ -49,6 +49,7 @@ export default class App extends Component {
         <NavBar
           totalCounters={this.state.counters.filter((c) => c.value > 0).length}
         />
+        <Link to="/movies">Movies</Link>
         <main className="container">
           <Counters
             counters={this.state.counters}

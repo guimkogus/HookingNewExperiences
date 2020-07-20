@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
-import Pagination from "./common/Pagination";
-import paginate from "../utils/Paginate";
-import ListGroup from "./common/ListGroup";
-import MoviesTable from "./MoviesTable";
 import _ from "lodash";
+import { getMovies, deleteMovie } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
+import Pagination from "../components/common/Pagination";
+import paginate from "../utils/Paginate";
+import ListGroup from "../components/common/ListGroup";
+import MoviesTable from "../components/MoviesTable";
+import { Link } from "react-router-dom";
 
 export default class Movies extends Component {
   state = {
@@ -22,7 +23,7 @@ export default class Movies extends Component {
   }
 
   handleDelete = (movie) => {
-    const movies = this.state.movies.filter((m) => m._id !== movie._id);
+    const movies = deleteMovie(movie._id);
     this.setState({ movies });
   };
 
@@ -68,11 +69,7 @@ export default class Movies extends Component {
   };
 
   render() {
-    const { pageSize, currentPage, sortColumn, movies: allMovies } = this.state;
-
-    if (allMovies.length === 0)
-      return <p>There are no movies in the database</p>;
-
+    const { pageSize, currentPage, sortColumn } = this.state;
     const { totalCount, data: movies } = this.getPageData();
 
     return (
@@ -85,6 +82,13 @@ export default class Movies extends Component {
           />
         </div>
         <div className="col">
+          <Link
+            className="btn btn-primary"
+            to="/movies/new"
+            style={{ marginBottom: 20 }}
+          >
+            New Movie
+          </Link>
           <p>Showing {totalCount} movies in the database.</p>
           <MoviesTable
             movies={movies}

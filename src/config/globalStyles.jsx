@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const Global = styled.div`
-  margin: 30px;
+export default styled.div`
   font-family: sans-serif;
+
+  .navbar {
+    margin-bottom: 30px;
+  }
 `;
